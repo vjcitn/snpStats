@@ -337,7 +337,7 @@ SEXP readped(SEXP filename, SEXP snp_names, SEXP missing, SEXP X, SEXP sep) {
     PROTECT(Cnames = allocVector(STRSXP, nc));
     protected++;
     for (j=0; j<nc; j++) {
-      sprintf(fmid,"%d", j+1);
+      snprintf(fmid, sizeof(fmid),"%d", j+1);
       SET_STRING_ELT(Cnames, j, mkChar(fmid));
     }
     SET_VECTOR_ELT(DimNames, 1, Cnames);

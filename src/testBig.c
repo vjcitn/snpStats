@@ -28,12 +28,12 @@ SEXP snp_big(SEXP nrow, SEXP ncol) {
   SET_VECTOR_ELT(Dnames, 1, Cnames);
   for (int i=0; i<N; i++) {
     char name[16];
-    sprintf(name, "Subject%d", i+1);
+    snprintf(name, sizeof(name), "Subject%d", i+1);
     SET_STRING_ELT(Rnames, i, mkChar(name));
   }
   for (int i=0; i<M; i++) {
     char name[16];
-    sprintf(name, "Snp%d", i+1);
+    snprintf(name, sizeof(name), "Snp%d", i+1);
     SET_STRING_ELT(Cnames, i, mkChar(name));
   }
   Rbyte *Ri = RAW(Result);

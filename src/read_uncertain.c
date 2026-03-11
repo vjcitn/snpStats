@@ -120,7 +120,7 @@ SEXP read_mach(const SEXP Filename, const SEXP Colnames, const SEXP Nsubject) {
     PROTECT(Cnames = allocVector(STRSXP, ncol));
     char id[BUFFERSIZE];
     for (int i=0; i<ncol; i++) {
-      sprintf(id, "SNP%d", i+1);
+      snprintf(id, sizeof(id), "SNP%d", i+1);
       SET_STRING_ELT(Cnames, i, mkChar(id));
     }
     SET_VECTOR_ELT(Dimnames, 1, Cnames);
@@ -260,7 +260,7 @@ SEXP read_impute(const SEXP Filename, const SEXP Rownames, const SEXP Nsnp,
     char id[BUFFERSIZE];
     if (!header) {
       for (int i=0; i<N; i++) {
-	sprintf(id, "Sample%d", i+1);
+	snprintf(id, sizeof(id), "Sample%d", i+1);
 	SET_STRING_ELT(Rnames, i, mkChar(id));
       }
     }

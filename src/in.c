@@ -28,7 +28,7 @@ void insnp(char *filename, char *tmpdir,
   /* Sort with chips varying fastest */
   char sort_command[160];
   int i = 0, j = 0;
-  sprintf(sort_command, 
+  snprintf(sort_command, sizeof(sort_command),
 	  "sort  -k 2,2 -k 1,1 -T \"%s\" -o \"%s\" \"%s\"",
           tmpdir, filename, filename);
   int error = system(sort_command);
