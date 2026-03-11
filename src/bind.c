@@ -240,7 +240,7 @@ SEXP snp_cbind(SEXP args) {
 	  if (cnij != R_NilValue) {
 	    SET_STRING_ELT(Cnames, ij, cnij);
 	    if (index_insert(col_index, CHAR(cnij), ij)!=0)
-	      error("Duplicated column name at column %d overall from column %d of object %d", ij+1, j+1, i+1);
+	      error("Duplicated column name at column %lld overall from column %d of object %d", ((long)(long)ij)+1, j+1, i+1);
 	  }
 	}
       }

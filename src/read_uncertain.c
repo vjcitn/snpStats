@@ -100,7 +100,7 @@ SEXP read_mach(const SEXP Filename, const SEXP Colnames, const SEXP Nsubject) {
       error("Number of entries on file does not correspond with column names");
   }
 
-  Rprintf("Reading SnpMatrix with %d rows and %d columns\n", lines, ncol);
+  Rprintf("Reading SnpMatrix with %ld rows and %d columns\n", lines, ncol);
 
   /* Build output object */ 
 
