@@ -1,5 +1,6 @@
 #include <R.h>
 #include <Rinternals.h>
+#include <R_ext/Random.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -38,7 +39,9 @@ SEXP snp_big(SEXP nrow, SEXP ncol) {
   }
   Rbyte *Ri = RAW(Result);
   for (R_xlen_t i=0; i<size; i++) {
+    GetRNGstate();
     int x = 1+rand()%2+rand()%2;
+    PutRNGstate();
     Ri[i] = x;
   }
   UNPROTECT(6);

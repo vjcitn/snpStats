@@ -12,7 +12,4 @@ License: GPL-3
 Collate: ss.R contingency.table.R convert.R compare.R glm-test.R imputation.R indata.R long.R misc.R ld.R mvtests.R pedfile.R outdata.R plink.R qc.R qq-chisq.R single.R tdt-single.R structure.R xstuff.R
 LazyLoad: yes
 biocViews: Microarray, SNP, GeneticVariability
-Packaged: 2022-07-27
-
-
-
+Packaged: 2026-03-11
