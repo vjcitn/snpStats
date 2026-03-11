@@ -1,6 +1,5 @@
 useDynLib("snpStats")
 import(methods)
-import(zlibbioc)
 importFrom(graphics, abline, axis, barplot, legend, lines, text, mtext, par,
            plot, points, polygon)
 importFrom(grDevices, heat.colors)
