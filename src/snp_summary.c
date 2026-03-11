@@ -24,7 +24,7 @@ SEXP X_snp_summary(const SEXP Snps, const SEXP Rules, const SEXP Uncertain) {
   if (Snps == R_NilValue) {
     error("Argument error - Snps = NULL");
   }
-  if(!IS_S4_OBJECT(Snps)) {
+  if(!Rf_isS4(Snps)) {
     error("Argument error - Snps is not S4 object");
   }
   const unsigned char *snps = RAW(Snps);
@@ -47,8 +47,8 @@ SEXP X_snp_summary(const SEXP Snps, const SEXP Rules, const SEXP Uncertain) {
   SEXP ruleNames = R_NilValue;
   if (!isNull(Rules)) {
     const char *classR = NULL;
-    if (TYPEOF(R_data_class(Rules, FALSE)) == STRSXP) {
-      classR = CHAR(STRING_ELT(R_data_class(Rules, FALSE), 0));
+    if (TYPEOF(R_class(Rules)) == STRSXP) {
+      classR = CHAR(STRING_ELT(R_class(Rules), 0));
     } else {
       classR = CHAR(STRING_ELT(getAttrib(Rules, R_ClassSymbol), 0));
     }
@@ -298,7 +298,7 @@ SEXP snp_summary(const SEXP Snps, const SEXP Rules, const SEXP Uncertain) {
   if (Snps == R_NilValue) {
     error("Argument error - Snps = NULL");
   }
-  if(!IS_S4_OBJECT(Snps)) {
+  if(!Rf_isS4(Snps)) {
     error("Argument error - Snps is not S4 object");
   }
   const unsigned char *snps = RAW(Snps);
@@ -321,8 +321,8 @@ SEXP snp_summary(const SEXP Snps, const SEXP Rules, const SEXP Uncertain) {
   SEXP ruleNames = R_NilValue;
   if (!isNull(Rules)) {
     const char *classR = NULL;
-    if (TYPEOF(R_data_class(Rules, FALSE)) == STRSXP) {
-      classR = CHAR(STRING_ELT(R_data_class(Rules, FALSE), 0));
+    if (TYPEOF(R_class(Rules)) == STRSXP) {
+      classR = CHAR(STRING_ELT(R_class(Rules), 0));
     } else {
       classR = CHAR(STRING_ELT(getAttrib(Rules, R_ClassSymbol), 0));
     }
@@ -538,7 +538,7 @@ SEXP row_summary(const SEXP Snps) {
   if (Snps == R_NilValue) {
     error("Argument error - Snps = NULL");
   }
-  if(!IS_S4_OBJECT(Snps)) {
+  if(!Rf_isS4(Snps)) {
     error("Argument error - Snps is not S4 object");
   }
   const unsigned char *snps = RAW(Snps);

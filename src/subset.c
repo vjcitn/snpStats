@@ -55,7 +55,7 @@ SEXP subset(SEXP X, SEXP Rows, SEXP Cols) {
   SET_STRING_ELT(Package, 0, mkChar("snpStats"));
   setAttrib(Rclass, install("package"), Package);
   setAttrib(Result, R_ClassSymbol, Rclass);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   PROTECT(Rdim = allocVector(INTSXP, 2));
   int *rdim = INTEGER(Rdim);
   rdim[0] = nrows;

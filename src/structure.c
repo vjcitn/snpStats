@@ -66,7 +66,7 @@ SEXP xxt(const SEXP Snps, const SEXP Strata, const SEXP Correct_for_missing,
   int *ifDiploid = NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP Diploid = R_do_slot(Snps, mkString("diploid"));
@@ -409,7 +409,7 @@ SEXP ibs_count(const SEXP Snps, const SEXP Uncertain) {
   int *ifDiploid = NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP Diploid = R_do_slot(Snps, mkString("diploid"));

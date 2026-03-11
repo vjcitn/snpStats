@@ -16,7 +16,7 @@ SEXP test_switch(const SEXP Snps, const SEXP Snps2, const SEXP Split,
   int *female = NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   SEXP diploid = NULL;
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {

@@ -34,7 +34,7 @@ SEXP snp_pre(const SEXP Snps, const SEXP Mat, const SEXP Frequency,
   int *ifdiploid = NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP diploid = R_do_slot(Snps, mkString("diploid"));
@@ -55,7 +55,7 @@ SEXP snp_pre(const SEXP Snps, const SEXP Mat, const SEXP Frequency,
 
   cl = GET_CLASS(Mat);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Mat, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Mat); /* S4 way of getting class attribute */
   }
   if (strcmp(CHAR(STRING_ELT(cl, 0)), "matrix"))
     error("Argument error - Mat wrong type");
@@ -161,7 +161,7 @@ SEXP snp_post(const SEXP Snps, const SEXP Mat, const SEXP Frequency,
   int *ifdiploid = NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP diploid = R_do_slot(Snps, mkString("diploid"));
@@ -182,7 +182,7 @@ SEXP snp_post(const SEXP Snps, const SEXP Mat, const SEXP Frequency,
 
   cl = GET_CLASS(Mat);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Mat, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Mat); /* S4 way of getting class attribute */
   }
   if (strcmp(CHAR(STRING_ELT(cl, 0)), "matrix"))
     error("Argument error - Mat wrong type");

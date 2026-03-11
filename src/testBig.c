@@ -18,7 +18,7 @@ SEXP snp_big(SEXP nrow, SEXP ncol) {
   SET_STRING_ELT(Package, 0, mkChar("snpStats"));
   setAttrib(Class, install("package"), Package);
   classgets(Result, Class);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
 
   PROTECT(Dnames = allocVector(VECSXP, 2));
   setAttrib(Result, R_DimNamesSymbol, Dnames);

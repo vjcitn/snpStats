@@ -77,7 +77,7 @@ SEXP snp_impute(const SEXP X, const SEXP Y, const SEXP Xord, const SEXP Yord,
   int *diploid = NULL;
   SEXP cl = GET_CLASS(X);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(X, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(X); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP Diploid = R_do_slot(X, mkString("diploid"));
@@ -395,7 +395,7 @@ SEXP snp_impute(const SEXP X, const SEXP Y, const SEXP Xord, const SEXP Yord,
   PROTECT(Maxpred = allocVector(INTSXP, 1));
   INTEGER(Maxpred)[0] = maxpred;
   setAttrib(Result, install("Max.predictors"), Maxpred);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
 
   /* Tidy up */
 
@@ -701,7 +701,7 @@ SEXP impute_snps(const SEXP Rules, const SEXP Snps, const SEXP Subset,
   int *diploid_in=NULL, *diploid=NULL;
   SEXP cl = GET_CLASS(Snps);
   if (TYPEOF(cl) != STRSXP) {
-    cl = R_data_class(Snps, FALSE); /* S4 way of getting class attribute */
+    cl = R_class(Snps); /* S4 way of getting class attribute */
   }
   if (!strcmp(CHAR(STRING_ELT(cl, 0)), "XSnpMatrix")) {
     SEXP Diploid = R_do_slot(Snps, mkString("diploid"));
@@ -753,7 +753,7 @@ SEXP impute_snps(const SEXP Rules, const SEXP Snps, const SEXP Subset,
     SET_STRING_ELT(Package, 0, mkChar("snpStats"));
     setAttrib(Class, install("package"), Package);
     classgets(Result, Class);
-    SET_S4_OBJECT(Result);
+    Rf_asS4(Result, TRUE, 0);
   }
   PROTECT(Dimnames = allocVector(VECSXP, 2));
   SET_VECTOR_ELT(Dimnames, 0, VECTOR_ELT(names, 0));

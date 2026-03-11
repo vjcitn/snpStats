@@ -53,8 +53,8 @@ SEXP score_single(const SEXP Phenotype, const SEXP Stratum, const SEXP Snps,
   /* SNPs ---- should be a SnpMatrix or an XSnpMatrix */
 
   const char *classS = NULL;
-  if (TYPEOF(R_data_class(Snps, FALSE)) == STRSXP) {
-    classS = CHAR(STRING_ELT(R_data_class(Snps, FALSE), 0));
+  if (TYPEOF(R_class(Snps)) == STRSXP) {
+    classS = CHAR(STRING_ELT(R_class(Snps), 0));
   } else {
     classS = CHAR(STRING_ELT(getAttrib(Snps, R_ClassSymbol), 0));
   }
@@ -67,7 +67,7 @@ SEXP score_single(const SEXP Phenotype, const SEXP Stratum, const SEXP Snps,
     ifX = 0; /* to avoid warning message */
     error("Argument error - class(Snps)");
   }
-  if(!IS_S4_OBJECT(Snps)) {
+  if(!Rf_isS4(Snps)) {
     error("Argument error - Snps is not S4 object");
   }
 
@@ -108,8 +108,8 @@ SEXP score_single(const SEXP Phenotype, const SEXP Stratum, const SEXP Snps,
   index_db name_index;
   if (!isNull(Rules)) {
     const char *classR = NULL;
-    if (TYPEOF(R_data_class(Rules, FALSE)) == STRSXP) {
-      classR = CHAR(STRING_ELT(R_data_class(Rules, FALSE), 0));
+    if (TYPEOF(R_class(Rules)) == STRSXP) {
+      classR = CHAR(STRING_ELT(R_class(Rules), 0));
     } else {
       classR = CHAR(STRING_ELT(getAttrib(Rules, R_ClassSymbol), 0));
     }

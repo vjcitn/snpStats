@@ -59,7 +59,7 @@ SEXP readbed(SEXP Bed, SEXP Id, SEXP Snps, SEXP Rsel, SEXP Csel) {
   SET_STRING_ELT(Package, 0, mkChar("snpStats"));
   setAttrib(Class, install("package"), Package);
   classgets(Result, Class);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   
   unsigned char *result = RAW(Result); 
   R_xlen_t ncell = (R_xlen_t)nrow*(R_xlen_t)ncol;

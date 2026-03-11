@@ -19,10 +19,10 @@ SEXP snp_rbind(SEXP args) {
     const SEXP This = CAR(args);
     Class = getAttrib(This, R_ClassSymbol);
     if (TYPEOF(Class) != STRSXP) {
-      Class = R_data_class(This, FALSE);
+      Class = R_class(This);
     }
     const char *cli = CHAR(STRING_ELT(Class, 0));
-    if(!IS_S4_OBJECT(This)) {
+    if(!Rf_isS4(This)) {
       warning("rbinding SnpMatrix object without S4 object bit");
     }
     int nci = ncols(This);
@@ -66,7 +66,7 @@ SEXP snp_rbind(SEXP args) {
   SEXP Result, Rnames, Dnames, Diploid = R_NilValue;
   PROTECT(Result = allocMatrix(RAWSXP, nr, nc));
   classgets(Result, duplicate(Class));
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   PROTECT(Rnames = allocVector(STRSXP, nr));
   PROTECT(Dnames = allocVector(VECSXP, 2));
   SET_VECTOR_ELT(Dnames, 0, Rnames);
@@ -148,10 +148,10 @@ SEXP snp_cbind(SEXP args) {
     SEXP This = CAR(args);
     Class = getAttrib(This, R_ClassSymbol);
     if (TYPEOF(Class) != STRSXP) {
-      Class = R_data_class(This, FALSE);
+      Class = R_class(This);
     }
     const char *cli = CHAR(STRING_ELT(Class, 0));
-    if(!IS_S4_OBJECT(This)) {
+    if(!Rf_isS4(This)) {
       warning("cbinding SnpMatrix object without S4 object bit");
     }
     SEXP Di = R_NilValue;
@@ -205,7 +205,7 @@ SEXP snp_cbind(SEXP args) {
   SEXP Result, Cnames, Dnames;
   PROTECT(Result = allocMatrix(RAWSXP, nr, nc));
   classgets(Result, duplicate(Class));
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   PROTECT(Dnames = allocVector(VECSXP, 2));
   setAttrib(Result, R_DimNamesSymbol, Dnames);
   PROTECT(Cnames = allocVector(STRSXP, nc));

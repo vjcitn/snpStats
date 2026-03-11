@@ -137,7 +137,7 @@ SEXP read_mach(const SEXP Filename, const SEXP Colnames, const SEXP Nsubject) {
   SET_STRING_ELT(Package, 0, mkChar("snpStats"));
   setAttrib(Class, install("package"), Package);
   classgets(Result, Class);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   UNPROTECT(2);
  
   /* Read in data */
@@ -278,7 +278,7 @@ SEXP read_impute(const SEXP Filename, const SEXP Rownames, const SEXP Nsnp,
   SET_STRING_ELT(Package, 0, mkChar("snpStats"));
   setAttrib(Class, install("package"), Package);
   classgets(Result, Class);
-  SET_S4_OBJECT(Result);
+  Rf_asS4(Result, TRUE, 0);
   UNPROTECT(2);
 
   char buffer[BUFFERSIZE];
