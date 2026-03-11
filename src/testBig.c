@@ -40,7 +40,7 @@ SEXP snp_big(SEXP nrow, SEXP ncol) {
   Rbyte *Ri = RAW(Result);
   for (R_xlen_t i=0; i<size; i++) {
     GetRNGstate();
-    int x = 1+(INT_MAX * unif_rand())%2+(INT_MAX * unif_rand())%2;
+    int x = 1+(int)(INT_MAX * unif_rand())%2+(int)(INT_MAX * unif_rand())%2;
     PutRNGstate();
     Ri[i] = x;
   }
