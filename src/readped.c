@@ -231,7 +231,7 @@ SEXP readped(SEXP filename, SEXP snp_names, SEXP missing, SEXP X, SEXP sep) {
 
     /* Generate row name for SnpMatrix */
     int memi = member[i];
-    snprintf(fmid, MAX_ID, "%s%c%d", fid, sepchar, memi);
+    snprintf(fmid, MAX_ID+11, "%s%c%d", fid, sepchar, memi);
     if (!memi)
       member[i] = NA_INTEGER;
     SET_STRING_ELT(Rnames, i, mkChar(fmid));

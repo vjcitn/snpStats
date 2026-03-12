@@ -29,7 +29,7 @@ SEXP snp_big(SEXP nrow, SEXP ncol) {
   SET_VECTOR_ELT(Dnames, 1, Cnames);
   for (int i=0; i<N; i++) {
     char name[16];
-    snprintf(name, sizeof(name), "Subject%d", i+1);
+    snprintf(name, sizeof(name)+11, "Subject%d", i+1);
     SET_STRING_ELT(Rnames, i, mkChar(name));
   }
   for (int i=0; i<M; i++) {
